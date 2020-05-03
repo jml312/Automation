@@ -1,5 +1,6 @@
-from selenium import webdriver
+import time
 
+from selenium import webdriver
 which_class = input("Enter the number corresponding to the grade you would like to see:\n 1. "
                     "Physics\n 2. Java\n 3. "
                     "Math\n 4. Data Science\n")
@@ -49,13 +50,21 @@ search.click()
 
 if which_class == '1':
     grades = browser.find_element_by_xpath('//*[@id="section-tabs"]/li[7]/a')
+    c = "physics"
 if which_class == '2':
     grades = browser.find_element_by_xpath('//*[@id="section-tabs"]/li[7]/a')
+    c = "java"
 if which_class == '3':
     grades = browser.find_element_by_xpath('//*[@id="section-tabs"]/li[6]/a')
+    c = "math"
 if which_class == '4':
     grades = browser.find_element_by_xpath('//*[@id="section-tabs"]/li[7]/a')
+    c = "data_science"
 
 grades.click()
 
 browser.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
+time.sleep(3)
+browser.save_screenshot("{}.png".format(c))
+browser.close()
